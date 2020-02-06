@@ -1,0 +1,53 @@
+<div class="col-md-12 mt-3">
+	<h1>{{page_title}}</h1>
+	
+	<div *ngIf="status != 'success'">
+		Crea un nuevo registro de Estudiante
+	</div>
+	<hr>
+	<br>
+	<div class="alert alert-success col-md-5 mt-3"  *ngIf="status == 'success'">
+		Los datos se han guardado correctamente
+	</div>
+	<div class="alert alert-danger col-md-5 mt-3" *ngIf="status == 'error'">
+		Los datos no se han guardado
+	</div>
+	<!--Formulario de registro-->
+	<form class="col-md-5 ml-0 pl-0" #estudianteForm="ngForm" (ngSubmit)="onSubmit(estudianteForm)"> 
+		<div class="form-group">
+			<label for="nombre">Nombre</label>
+			<input type="text" name="nombre" class="form-control" #nombre="ngModel" [(ngModel)]="
+			estudiante.nombre" required pattern="[a-z A-Z]+">
+			<small *ngIf="!nombre.valid && nombre.touched" class="invalid-feedback d-block">
+				El nombre no es valido
+			</small>
+		</div>
+		<div class="form-group">
+			<label for="apellido">Apellidos</label>
+			<input type="text" name="apellido"class="form-control" #apellido="ngModel" [(ngModel)]="
+			estudiante.apellido" required pattern="[a-z A-Z]+">
+			<small *ngIf="!apellido.valid && apellido.touched" class="invalid-feedback d-block">
+				El apellido no es valido
+			</small>
+		</div>
+		<div class="form-group">
+			<label for="edad">Edad</label>
+			<input type="text" name="edad"class="form-control" #edad="ngModel" [(ngModel)]="
+			estudiante.edad" required>
+			<small *ngIf="!edad.valid && edad.touched" class="invalid-feedback d-block">
+			La Edad no es valida
+			</small>
+		</div>
+		<div class="form-group">
+			<label for="direccion">Direccion</label>
+			<input type="text" name="direccion"class="form-control" #direccion="ngModel" [(ngModel)]="
+			estudiante.direccion" required pattern="[a-z A-Z]+">
+			<small *ngIf="!direccion.valid && direccion.touched" class="invalid-feedback d-block">
+				Direccion no valida
+			</small>
+		</div>
+		<input type="submit" value="Agregar Registro"class="btn btn-success" [disabled]="estudianteForm.invalid">
+
+	</form>
+	<br>
+</div>
